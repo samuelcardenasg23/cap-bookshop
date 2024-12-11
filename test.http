@@ -34,6 +34,6 @@ Authorization: Basic alice:
 Content-Type: application/json
 
 {
-    "book": 201,
-    "quantity": 2
+    "book": 207,
+    "quantity": 1
 } 
