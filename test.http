@@ -1,0 +1,39 @@
+### Variables
+@host = http://localhost:4004
+
+### 1. Test CatalogService (Browse Books - Public Read)
+GET {{host}}/browse/Books
+Accept: application/json
+
+### 2. Test CatalogService with specific fields
+GET {{host}}/browse/Books?$select=ID,title,author
+Accept: application/json
+
+### 3. Test AdminService (Get All Books - Requires Auth)
+GET {{host}}/odata/v4/admin/Books
+Authorization: Basic alice:
+Accept: application/json
+
+### 4. Test AdminService (Create New Book - Requires Auth)
+POST {{host}}/odata/v4/admin/Books
+Authorization: Basic alice:
+Content-Type: application/json
+
+{
+    "ID": 3,
+    "title": "New Book",
+    "stock": 100,
+    "price": 19.99,
+    "currency_code": "USD",
+    "author_ID": 101
+}
+
+### 5. Test CatalogService (Submit Order - Requires Auth)
+POST {{host}}/browse/submitOrder
+Authorization: Basic alice:
+Content-Type: application/json
+
+{
+    "book": 201,
+    "quantity": 2
+} 
