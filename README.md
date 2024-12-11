@@ -1,25 +1,58 @@
-# Getting Started
+# CAP Bookshop Project
 
-Welcome to your new project.
+A simple bookshop application built using SAP Cloud Application Programming Model (CAP).
 
-It contains these folders and files, following our recommended project layout:
+## Project Overview
 
-File or Folder | Purpose
----------|----------
-`app/` | content for UI frontends goes here
-`db/` | your domain models and data go here
-`srv/` | your service models and code go here
-`package.json` | project metadata and configuration
-`readme.md` | this getting started guide
+This project implements a basic bookshop service with the following features:
+- Book catalog management
+- Author management
+- Order processing
+- Stock management
 
+## Key Features
 
-## Next Steps
+### Services
 
-- Open a new terminal and run `cds watch`
-- (in VS Code simply choose _**Terminal** > Run Task > cds watch_)
-- Start adding content, for example, a [db/schema.cds](db/schema.cds).
+1. **Catalog Service (`/browse`)**
+   - Public book catalog viewing
+   - Book ordering functionality
+   - Stock management
+   - Requires authentication for orders
 
+2. **Admin Service**
+   - Complete book management
+   - Author management
+   - Requires authentication
 
-## Learn More
+### Data Models
 
-Learn more at https://cap.cloud.sap/docs/get-started/.
+- **Books**: Manages book information including stock and pricing
+- **Authors**: Manages author information
+- **Genres**: Hierarchical organization of book genres
+
+### Available Endpoints
+
+Refer to `test.http` for the available endpoints
+
+1. **Browse Books (Public)**
+   ```http
+   GET http://localhost:4004/browse/Books
+   ```
+
+2. **Submit Order (Authenticated)**
+   ```http
+   POST http://localhost:4004/browse/submitOrder
+   ```
+
+3. **Admin Operations (Authenticated)**
+   ```http
+   GET http://localhost:4004/odata/v4/admin/Books
+   POST http://localhost:4004/odata/v4/admin/Books
+   ```
+
+### Authentication
+
+The project uses basic authentication with predefined users:
+- `alice` (admin access)
+- `bob` (restricted access)
